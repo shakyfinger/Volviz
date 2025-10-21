@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Volviz</title>
+    <link rel='stylesheet' href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <body>
+    
+    <div class="transition t1 is-active">
+      <div class="loader"></div> 
+    </div>
+    <main>
+      <h1 class="headerText">Volviz</h1>
+      <div class="description">
+        <p>A Volatility Visualization Tool </p>
+      </div>
+
+      <div class="searchbar">
+        <form action="/dashboard" name="searchform">
+          <input type="text" id="symbol" name="symbol" placeholder="Enter ticker symbol: (eg. AAPL, NVDA)" autofocus>
+        </form>
+      </div>
+
+      {% if symbol %}
+      <p>Couldn't fetch ticker information for "{{symbol}}", try another ticker symbol</p>
+      {% endif %}
+
+    </main>
+
+    <footer>
+      <a class="foot" href="https://github.com/shakyfinger/Volviz">Github<i class="fa-brands fa-github"></i></a>
+    </footer>
+
+
+    <script src={{ url_for('static', filename='transition.js') }}></script>
+  </body>
+
+</html>
+

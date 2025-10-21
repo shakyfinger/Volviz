@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-3.1.1.min.js" charset="utf-8"></script>
+    <script src={{ url_for('static', filename='main.js') }}></script>
+    <script src={{ url_for('static', filename='transition.js') }}></script>
+    <link rel='stylesheet' href="{{ url_for('static', filename='dash.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>  
+    <header>
+      <a class="back" href="/"><i class="fa-duotone fa-solid fa-arrow-left"></i></i></a>
+      <div class="searchbar">
+        <form action="/dashboard" name="searchform">
+          <input type="text" id="symbol" name="symbol" placeholder="Enter another ticker symbol">
+        </form>
+      </div>
+    </header>
+
+    <div class="transition t2 is-active">
+      <div class="loader"></div> 
+    </div>
+
+    <div id="info_card" class="info_card"></div>
+
+    <main>
+      <div class="card-grid">
+        <div class="double">
+          <div class="card">
+            <div class="card1-grid">
+              <div class="sym">{{symbol}}</div>
+              <div class="long", id="long"></div>
+              <div class="change", id="change"></div>
+              <div class="plot grid-plot" id="candlestick"></div>
+              <script>candle(decodeHtml('{{ohlcjson}}'))</script>
+            </div>
+            <script>info(decodeHtml('{{info}}'))</script>
+          </div>
+
+          <div class="flipbox">
+            <div class="flipinner" id="IV_flipinner">
+              <div class="cardfront">
+                <div class="card-header">
+                  <p class="card-title">Implied Volatility Surface</p>
+                  <button class="frontbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="plot" id="surf"></div>
+                <script>surf(decodeHtml('{{surf}}'))</script>
+              </div>
+              <div class="cardback">
+                <div class="card-header">
+                  <p class="card-title">Implied Volatility Surface</p>
+                  <button class="backbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="desc" id="iv_desc"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="double">
+
+          <div class="flipbox">
+            <div class="flipinner" id="logr_flipinner">
+              <div class="cardfront">
+                <div class="card-header">
+                  <p class="card-title">Log Returns</p>
+                  <button class="frontbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="plot" id="log_r"></div>
+                <script>log_r(decodeHtml('{{log_r}}'))</script>
+              </div>
+              <div class="cardback">
+                <div class="card-header">
+                  <p class="card-title">Log Returns</p>
+                  <button class="backbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="desc" id="logr_desc"></div>
+              </div>
+            </div>
+          </div>
+            
+          <div class="flipbox">
+            <div class="flipinner" id="garch_flipinner">
+              <div class="cardfront">
+                <div class="card-header">
+                  <p class="card-title">GARCH Model Predictions</p>
+                  <button class="frontbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="plot" id="garch"></div>
+                <script>garch(decodeHtml('{{garch}}'))</script>
+              </div>
+              <div class="cardback">
+                <div class="card-header">
+                  <p class="card-title">GARCH Model Predictions</p>
+                  <button class="backbutton"><i class="fa-etch fa-solid fa-circle-info"></i></button>
+                </div>
+                <div class="desc" id="garch_desc"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+    <script>resize()</script>
+    <script src={{ url_for('static', filename='buttons.js') }}></script>
+    <footer>
+      <a class="foot" href="https://github.com/shakyfinger/Volviz">Github<i class="fa-brands fa-github"></i></a>
+    </footer>
+
+  </body>
+</html>

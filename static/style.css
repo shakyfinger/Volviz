@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #F2F3F4;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  min-height: 100vh;
+  background-color: #202124;
+  color: #E8EAED;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: serif, 'Times New Roman', sans-serif;
+}
+
+.foot {
+  text-decoration: unset;
+  font-size: 1.5em;
+  text-align: left;
+  display: block;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.headerText {
+  font-size: 6em;
+}
+
+.searchbar {
+  display: flex;
+  width: 100%;
+  height: 44px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+}
+
+input[type=text] {
+  color: white;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  background: #4D5156;
+  outline: none;
+  border: transparent;
+  border-radius: 24px;
+  flex: 1;
+}
+
+input[type=text]:hover {
+   background: #5F6368;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 35px;
+  margin: auto auto;
+  z-index: 101;
+  aspect-ratio: 1;
+  --c:no-repeat linear-gradient(#F0FFFF 0 0);
+  background:
+    var(--c) 0 0,
+    var(--c) 100% 0,
+    var(--c) 100% 100%,
+    var(--c) 0 100%;
+  animation: 
+    l2-1 2s infinite,
+    l2-2 2s infinite;
+}
+@keyframes l2-1 {
+  0%   {background-size: 0    4px,4px 0   ,0    4px,4px 0   }
+  12.5%{background-size: 100% 4px,4px 0   ,0    4px,4px 0   }
+  25%  {background-size: 100% 4px,4px 100%,0    4px,4px 0   }
+  37.5%{background-size: 100% 4px,4px 100%,100% 4px,4px 0   }
+  45%,
+  55%  {background-size: 100% 4px,4px 100%,100% 4px,4px 100%}
+  62.5%{background-size: 0    4px,4px 100%,100% 4px,4px 100%}
+  75%  {background-size: 0    4px,4px 0   ,100% 4px,4px 100%}
+  87.5%{background-size: 0    4px,4px 0   ,0    4px,4px 100%}
+  100% {background-size: 0    4px,4px 0   ,0    4px,4px 0   }
+}
+@keyframes l2-2 {
+  0%,49.9%{background-position: 0 0   ,100% 0   ,100% 100%,0 100%}
+  50%,100%{background-position: 100% 0,100% 100%,0    100%,0 0   }
+}
+.t1 {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  bottom: 0;
+  z-index: 100;
+  background-color: #2E3440;
+  transition: 0.1s ease-out;
+}
+
+.t1.is-active {
+  right: 0px
+}
