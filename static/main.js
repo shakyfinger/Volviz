@@ -228,9 +228,3 @@ function garch(json) {
 }
 
 
-
-// templates/index.html
-// templates/dashboard.html
-// static/test.js
-// volviz.py
-// aux.py

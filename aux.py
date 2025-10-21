@@ -99,9 +99,3 @@ class yfticker:
 
 
 
-
-# templates/index.html
-# templates/dashboard.html
-# static/test.js
-# volviz.py
-# aux.py

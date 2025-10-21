@@ -19,10 +19,5 @@ def dash():
     else:
         return render_template("index.html", symbol=sym)
 
-
-
-# templates/index.html
-# templates/dashboard.html
-# static/test.js
-# volviz.py
-# aux.py
+if __name__ == "__main__":
+    app.run()
