@@ -81,16 +81,13 @@ class yfticker:
         df = df.dropna()
 
         model = arch_model(df['log_r']*100, p=1, q=1)
-        model_fit = model.fit()
 
-        train = 90
         df['pred'] = np.nan
-        for i in df.index[train:]:
-            traindata = df['log_r'].loc[:i]*100
-            model = arch_model(traindata, p=1, q=1)
-            model_fit = model.fit(disp='off')
-            pred = model_fit.forecast(horizon=1)
-            df.loc[i, 'pred'] = np.sqrt(pred.variance.values[0][0]*252)/100
+        traindata = df['log_r'].iloc[:-30]*100
+        model = arch_model(traindata, p=1, q=1)
+        model_fit = model.fit(disp='off')
+        pred = model_fit.forecast(horizon=30)
+        df.iloc[-30:, 1] = np.sqrt(pred.variance.values[0]*252)/100
 
         #df['vol'] = np.sqrt(((df['log_r'] - df['log_r'].rolling(7).mean()))**2 * 252)
         df['vol'] = df['log_r'].rolling(7).std()*np.sqrt(252)
