@@ -199,7 +199,7 @@ function garch(json) {
     x: raw["index"],
     y: pred,
     type: 'scatter',
-    name: 'GARCH rolling predictions'
+    name: '30-day GARCH predictions'
   };
   const trace2 = {
     x: raw["index"],
